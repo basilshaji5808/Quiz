@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <form action="{% url 'quiz:java' %}" method="post">
+            {% csrf_token %}
+            {% for j in java %}
+            <h4>{{j.question}}</h4>
+            <select name="selected_answers_{{ j.id }}" style="width:300px;">
+                <option value="option">--Select Answer--</option><br>
+                <option value="{{j.opt1}}">{{j.opt1}}</option><br>
+                <option value="{{j.opt2}}">{{j.opt2}}</option><br>
+                <option value="{{j.opt3}}">{{j.opt3}}</option><br>
+                <option value="{{j.opt4}}">{{j.opt4}}</option><br>
+            </select>
+            <br>
+            <br>
+            {% endfor %}
+        <button class="btn btn-success" type="submit">Submit</button> <button class="btn btn-warning" type="reset">Reset</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <form action="{% url 'quiz:angular' %}" method="post">
+        {% csrf_token %}
+        {% for a in angular %}
+        <h4>{{a.question}}</h4>
+        <select name="selected_answers_{{ a.id }}" style="width:300px;">
+            <option value="option">--Select Answer--</option><br>
+            <option value="{{a.opt1}}">{{a.opt1}}</option><br>
+            <option value="{{a.opt2}}">{{a.opt2}}</option><br>
+            <option value="{{a.opt3}}">{{a.opt3}}</option><br>
+            <option value="{{a.opt4}}">{{a.opt4}}</option><br>
+        </select>
+            <br>
+            <br>
+        {% endfor %}
+        <button class="btn btn-success" type="submit">Submit</button> <button class="btn btn-warning" type="reset">Reset</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

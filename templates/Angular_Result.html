@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Python Result
+{% endblock %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-sm-12">
+      <center><img src="{% static 'images/result.png' %}"></center>
+      <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="background-image:url('{% static 'images/resultbg.jpg' %}')">
+        <h5 class="card-title" style="color:blue">Score : {{score}}</h5>
+          <p class="card-text" style="color:blue">Percentage : {{percentage}}%</p>
+          <p class="card-text" style="color:green">Correct answers : {{correct}}</p>
+          <p class="card-text" style="color:red">Incorrect answers : {{wrong}}</p>
+          <p class="card-text" style="color:blue">total : {{total}}</p>
+          <p class="card-text" style="color:green"><small class="text">All the best for next quiz!</small></p>
+      </div>
+    </div>
+  </div>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

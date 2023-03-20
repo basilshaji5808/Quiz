@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+  <div class="row justify-content-center">
+  <div class="col-md-6 col-sm-12">
+      <h2 class="card-title text-center" style="color:black;"><b>Register Your Account</b></h2>
+   <div class="card bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="background-image:url('{% static 'images/register.jpeg' %}')">
+      <div class="card-body py-md-4">
+       <form action="{% url 'user:register' %}" method="post">
+           {% csrf_token %}
+          <div class="form-group">
+              <input type="text" class="form-control" id="name" name="username" placeholder="User Name">
+          </div>
+           <div class="form-group">
+               <input type="email" class="form-control" id="email" name="email" placeholder="Email ID">
+           </div>
+           <div class="form-group">
+               <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+           </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirm-password" name="password1" placeholder="confirm-password">
+            </div>
+            <div>
+                <center><button class="btn btn-info">Register</button></center>
+            </div>
+       </form>
+          {% for msg in messages %}
+          <div class="alert alert-warning" role="alert">
+              {{msg}}
+          </div>
+          {% endfor %}
+     </div>
+  </div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

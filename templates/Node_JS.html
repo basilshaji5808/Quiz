@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <form action="{% url 'quiz:nodejs' %}" method="post">
+            {% csrf_token %}
+            {% for nd in nodejs %}
+            <h4>{{nd.question}}</h4>
+            <select name="selected_answers_{{ nd.id }}" style="width:300px;">
+                <option value="option">--Select Answer--</option><br>
+                <option value="{{nd.opt1}}">{{nd.opt1}}</option><br>
+                <option value="{{nd.opt2}}">{{nd.opt2}}</option><br>
+                <option value="{{nd.opt3}}">{{nd.opt3}}</option><br>
+                <option value="{{nd.opt4}}">{{nd.opt4}}</option><br>
+            </select>
+            <br>
+            <br>
+            {% endfor %}
+        <button class="btn btn-success" type="submit">Submit</button> <button class="btn btn-warning" type="reset">Reset</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

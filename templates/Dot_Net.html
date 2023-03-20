@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <form action="{% url 'quiz:dot_net' %}" method="post">
+            {% csrf_token %}
+            {% for dn in dot_net %}
+            <h4>{{dn.question}}</h4>
+            <select name="selected_answers_{{ dn.id }}" style="width:300px;">
+                <option value="option">--Select Answer--</option><br>
+                <option value="{{dn.opt1}}">{{dn.opt1}}</option><br>
+                <option value="{{dn.opt2}}">{{dn.opt2}}</option><br>
+                <option value="{{dn.opt3}}">{{dn.opt3}}</option><br>
+                <option value="{{dn.opt4}}">{{dn.opt4}}</option><br>
+            </select>
+            {% endfor %}
+        <button class="btn btn-success" type="submit">Submit</button> <button class="btn btn-warning" type="reset">Reset</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

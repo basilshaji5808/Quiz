@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <form action="{% url 'quiz:react' %}" method="post">
+            {% csrf_token %}
+            {% for r in react %}
+            <h4>{{r.question}}</h4>
+            <select name="selected_answers_{{ r.id }}" style="width:300px;">
+                <option value="option">--Select Answer--</option><br>
+                <option value="{{r.opt1}}">{{r.opt1}}</option><br>
+                <option value="{{r.opt2}}">{{r.opt2}}</option><br>
+                <option value="{{r.opt3}}">{{r.opt3}}</option><br>
+                <option value="{{r.opt4}}">{{r.opt4}}</option><br>
+            </select>
+            <br>
+            <br>
+            {% endfor %}
+        <button class="btn btn-success" type="submit">Submit</button> <button class="btn btn-warning" type="reset">Reset</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

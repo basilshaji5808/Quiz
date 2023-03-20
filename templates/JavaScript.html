@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <form action="{% url 'quiz:javascript' %}" method="post">
+            {% csrf_token %}
+            {% for js in javascript %}
+            <h4>{{js.question}}</h4>
+            <select name="selected_answers_{{ js.id }}" style="width:300px;">
+                <option value="option">--Select Answer--</option><br>
+                <option value="{{js.opt1}}">{{js.opt1}}</option><br>
+                <option value="{{js.opt2}}">{{js.opt2}}</option><br>
+                <option value="{{js.opt3}}">{{js.opt3}}</option><br>
+                <option value="{{js.opt4}}">{{js.opt4}}</option><br>
+            </select>
+            <br>
+            <br>
+            {% endfor %}
+        <button class="btn btn-success" type="submit">Submit</button> <button class="btn btn-warning" type="reset">Reset</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
